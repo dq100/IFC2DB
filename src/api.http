@@ -1,0 +1,174 @@
+### Diese Datei enthält Beispielaufrufe für die API
+
+### DB initialisieren
+POST http://localhost:3002/api/setup HTTP/1.1
+content-type: application/json
+
+###############################################################################
+
+### Produkt einlesen (kleine Datei)
+POST /api/ifc HTTP/1.1
+Host: localhost:3002
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="testMode"
+
+0
+--MyBoundary
+Content-Disposition: form-data; name="ifc"; filename="CatalogV4.ifc"
+Content-Type: application/octet-stream
+
+< CatalogV4.ifc
+--MyBoundary--
+
+### Produkt einlesen (große Datei)
+POST /api/ifc HTTP/1.1
+Host: localhost:3002
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="testMode"
+
+0
+--MyBoundary
+Content-Disposition: form-data; name="ifc"; filename="CatalogV4voll.ifc"
+Content-Type: application/octet-stream
+
+< CatalogV4 Silencer vollstaendig.ifc
+--MyBoundary--
+
+###############################################################################
+
+### Alle Artikel abfragen
+GET http://localhost:3002/api/ifc/ HTTP/1.1
+content-type: application/json
+
+### Bestimmten Artikel abfragen
+GET http://localhost:3002/api/ifc/1 HTTP/1.1
+content-type: application/json
+
+###############################################################################
+
+### Alle Artikel löschen
+DELETE http://localhost:3002/api/ifc/ HTTP/1.1
+content-type: application/json
+
+
+### Bestimmten Artikel löschen
+DELETE http://localhost:3002/api/ifc/3 HTTP/1.1
+content-type: application/json
+
+###############################################################################
+
+### Produkt selektieren, nächstes Attribut
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "300",
+	"next": "length"
+}
+
+###############################################################################
+
+### Produkt selektieren kleine Datei
+### Produkt selektieren 0
+POST http://localhost:3002/api/article/1 HTTP/1.1
+### Produkt selektieren 1
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "305"
+}
+### Produkt selektieren 2
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "305",
+    "kindOfPort": "flange"
+}
+### Produkt selektieren 3
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "305",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80"
+}
+### Produkt selektieren 4
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "305",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80",
+	"length": "304"
+}
+
+###############################################################################
+
+### Produkt selektieren große Datei
+### Produkt selektieren 0
+POST http://localhost:3002/api/article/1 HTTP/1.1
+### Produkt selektieren 1
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "587"
+}
+### Produkt selektieren 2
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "587",
+    "kindOfPort": "flange"
+}
+### Produkt selektieren 3
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "587",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80"
+}
+### Produkt selektieren 4
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+    "height": "587",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80",
+	"numberOfSplitters": "3"
+}
+### Produkt selektieren 5
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+	"height": "587",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80",
+	"numberOfSplitters": "3",
+	"length": "1217.0"
+}
+### Produkt selektieren 6
+POST http://localhost:3002/api/article/1 HTTP/1.1
+content-type: application/json
+
+{
+	"height": "587",
+    "kindOfPort": "flange",
+	"widthOfSplitters": "80",
+	"numberOfSplitters": "3",
+	"length": "1217.0",
+	"width": "726.5"
+}

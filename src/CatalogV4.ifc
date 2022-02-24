@@ -1,0 +1,889 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (('An example to show some elements for catalog definition'), '2;1');
+FILE_NAME ('catalog-example', '2020-06-25T12:00:00', ('Wolfgang Wilkes'), ('Semaino'), ' ', ' ', ' ');
+FILE_SCHEMA (('IFC4'));
+ENDSEC;
+DATA;
+
+#1= IFCPROJECT('273Rd3Kgr3MAUL0vM0ouX4',$,'myProject',$,$,'myProjectLongName',$,$,$);
+#2= IFCPROJECTLIBRARY('3tSvXKUsvDlxvEzXylyckz',$,'myProjectLibrary',$,$,$,$,$,$);
+#3= IFCRELDECLARES('3Z4Xv_u3HD3Rzf6opAWCeY',$,$,$,#1,(#2));
+#4= IFCRELDECLARES('0000000000000000000000',$,$,$,#2,(#1000));
+/* Units and unit assignments */
+
+#7=IFCSIUNIT(*,.LENGTHUNIT.,$,.METRE.);
+#8=IFCSIUNIT(*,.MASSUNIT.,.KILO.,.GRAM.);
+#9=IFCSIUNIT(*,.TIMEUNIT.,$,.SECOND.);
+#10=IFCSIUNIT(*,.ELECTRICCURRENTUNIT.,$,.AMPERE.);
+#11=IFCSIUNIT(*,.THERMODYNAMICTEMPERATUREUNIT.,$,.KELVIN.);
+#12=IFCSIUNIT(*,.AMOUNTOFSUBSTANCEUNIT.,$,.MOLE.);
+#13=IFCSIUNIT(*,.LUMINOUSINTENSITYUNIT.,$,.CANDELA.);
+
+#14=IFCDIMENSIONALEXPONENTS(0,0,0,0,0,0,0);
+#15=IFCMEASUREWITHUNIT(IFCREAL(1.),#16);
+#16=IFCDERIVEDUNIT((),.USERDEFINED., $);
+#17=IFCCONVERSIONBASEDUNITWITHOFFSET(#14,.USERDEFINED.,'without unit',#15,0);
+
+#18=IFCDIMENSIONALEXPONENTS(-2,1,-2,0,0,0,0);
+#19=IFCMEASUREWITHUNIT(IFCREAL(1.),#20);
+#20=IFCDERIVEDUNIT((#21, #22, #23), .USERDEFINED., $);
+#21=IFCDERIVEDUNITELEMENT(#7, -2);
+#22=IFCDERIVEDUNITELEMENT(#8, 1);
+#23=IFCDERIVEDUNITELEMENT(#9, -2);
+#24=IFCCONVERSIONBASEDUNITWITHOFFSET(#18,.USERDEFINED.,'Pascal per meter',#19,0);
+
+#29=IFCDIMENSIONALEXPONENTS(1,0,0,0,0,0,0);
+#30=IFCMEASUREWITHUNIT(IFCREAL(1000.),#31);
+#31=IFCDERIVEDUNIT((#32),.USERDEFINED.,'');
+#32=IFCDERIVEDUNITELEMENT(#7,1);
+#33=IFCCONVERSIONBASEDUNITWITHOFFSET(#29,.USERDEFINED.,'millimeter',#30,0.);
+
+#38=IFCDIMENSIONALEXPONENTS(3,0,-1,0,0,0,0);
+#39=IFCMEASUREWITHUNIT(IFCREAL(1.),#40);
+#40=IFCDERIVEDUNIT((#41, #42), .USERDEFINED., $);
+#41=IFCDERIVEDUNITELEMENT(#7, 3);
+#42=IFCDERIVEDUNITELEMENT(#9, -1);
+#44=IFCCONVERSIONBASEDUNITWITHOFFSET(#38,.USERDEFINED.,'qubic meters per second',#39,0);
+
+
+#53=IFCORGANIZATION('https://construction-industry-dictionaries.online','Construction Industry Dictionaries','A (fictitious) organization that maintains and publishes data dictionaries for the Construction Industry',$,$);
+
+/*  ifcLibraryInformation (Name, Version, Publisher, VersionDate, Location, Description) */
+#400= IFCLIBRARYINFORMATION('Construction Data Dictionary',$,#53,$,'https://construction-industry-dictionaries.online/datadictionary',$);
+
+/* ifcLibraryReference (Location, Identification, Name, Description, Language, ReferencedLibrary) */
+/* Silencer */
+#500= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/57f947ec-bd74-4c39-9647-d7e71e341d7e', '57f947ec-bd74-4c39-9647-d7e71e341d7e', 'Silencer', 'bSDD.Silencer',$,#400);
+
+/*  PropertySet staticPropertySet_Silencer with its properties */
+
+#510= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/fbcf6134-2837-4521-9bc8-92b4e8d549bd', 'fbcf6134-2837-4521-9bc8-92b4e8d549bd', 'staticPropertySet_Silencer', $, $, #400);
+#520= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/4316426c-4096-4a9f-af6d-00cd0ef47cbe', '4316426c-4096-4a9f-af6d-00cd0ef47cbe', 'Property_width', $, $, #400);
+#530= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/4f5da808-5eac-4f49-b57c-a87a444e429f', '4f5da808-5eac-4f49-b57c-a87a444e429f', 'Property_length', $, $, #400);
+#540= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/6edb4b53-ef7c-40eb-b09a-a230eb7f0124', '6edb4b53-ef7c-40eb-b09a-a230eb7f0124', 'Property_height', $, $, #400);
+#550= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/e3b0e8d8-cde7-4f0f-8b9b-dbf0f2e1785d', 'e3b0e8d8-cde7-4f0f-8b9b-dbf0f2e1785d', 'Property_kindOfFrame', $, $, #400);
+#560= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/6009c9b2-ca51-4ae4-9a8f-d61fc18b7e57', '6009c9b2-ca51-4ae4-9a8f-d61fc18b7e57', 'Property_kindOfPort', $, $, #400);
+#570= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/f188534c-01f2-4bd3-b560-bb604ee8d644', 'f188534c-01f2-4bd3-b560-bb604ee8d644', 'Property_widthOfSplitters', $, $, #400);
+#580= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/1afce859-a37f-4b75-95b1-38d6a6857cc9', '1afce859-a37f-4b75-95b1-38d6a6857cc9', 'Property_numberOfSplitters', $, $, #400);
+#590= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/8facb056-dec9-488b-bbd5-dca617ac7f42', '8facb056-dec9-488b-bbd5-dca617ac7f42', 'Property_maxWidth', $, $, #400);
+#600= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/501ad91d-2427-4e59-ba62-a8474142822a', '501ad91d-2427-4e59-ba62-a8474142822a', 'Property_maxLength', $, $, #400);
+#610= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/0fc292a2-e31f-4ff8-9806-e8dd7ab41bfd', '0fc292a2-e31f-4ff8-9806-e8dd7ab41bfd', 'Property_maxHeight', $, $, #400);
+#620= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/28347ebe-266a-498a-9cb6-e8789408caa3', '28347ebe-266a-498a-9cb6-e8789408caa3', 'Property_minWidth', $, $, #400);
+#630= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/3cc115e3-01b9-459e-bd7e-23cf18fc6bfe', '3cc115e3-01b9-459e-bd7e-23cf18fc6bfe', 'Property_minLength', $, $, #400);
+#640= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/6c3c2784-4691-403f-b0ed-a8b56cdc0ed2', '6c3c2784-4691-403f-b0ed-a8b56cdc0ed2', 'Property_minHeight', $, $, #400);
+
+/*  PropertySet dynamicPropertySet_Silencer with its properties */
+
+#700= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/c0275938-09b7-43e6-ad91-a9ec623939ef', 'c0275938-09b7-43e6-ad91-a9ec623939ef', 'dynamicPropertySet_Silencer', $, $, #400);
+#710= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/2fc381ae-6a08-41d6-b687-df63a322ecf7', '2fc381ae-6a08-41d6-b687-df63a322ecf7', 'Property_pressureLoss', $, $, #400);
+
+/*  PropertySet systemPropertySet_Silencer with its properties */
+
+#800= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/802bbc58-2c3f-47e1-9ea4-1a980371c866', '802bbc58-2c3f-47e1-9ea4-1a980371c866', 'systemPropertySet_Silencer', $, $, #400);
+#810= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/7b1781cd-d7ad-459e-b55d-e17714cf596d', '7b1781cd-d7ad-459e-b55d-e17714cf596d', 'Property_volumeFlow', $, $, #400);
+
+/*  PropertySet errorPropertySet with its properties */
+
+#900= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/802bbc58-2c3f-47e1-9ea4-1a980371c867', '802bbc58-2c3f-47e1-9ea4-1a980371c867', 'errorPropertySet', $, $, #400);
+#910= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/7b1781cd-d7ad-459e-b55d-e17714cf596y', '7b1781cd-d7ad-459e-b55d-e17714cf596y', 'Property_errorMessage', $, $, #400);
+#920= IFCLIBRARYREFERENCE('https://construction-industry-dictionaries.online/datadictionary/02d81e53-0729-4e5f-a643-aad66e1369f5', '02d81e53-0729-4e5f-a643-aad66e1369f5', 'Property_errorCode', $, $, #400);
+
+/*  IfcBuildingElementProxyType (GlobalID, IFCOwnerHistory, Name, Description, ApplicableOccurrence, HasPropertySets, RepresentationMaps, Tag, ElementType, PredefinedType) */
+#1000= IFCBUILDINGELEMENTPROXYTYPE ('1BgPvb5CT4je9dj4j5PKD6', $, 'Silencer', $,'IfcBuildingElementProxy', (#1100, #1300, #1400), $,$,$, .NOTDEFINED.);
+#1001= IFCRELDECLARES('2r1q28apn2jP35K7qhO2PD',$,$,$,#2,(#1000));
+
+/*  IfcRelAssociatesLibrary (GlobalID, IFCOwnerHistory, Name, Description, RelatedObjects, RelatingLibrary) */
+#1002=IFCRELASSOCIATESLIBRARY('1um7PHMfT7pRlHkBsjsboV',$,$,$,(#1000),#500);
+
+/*  IfcPropertySet (GlobalID, IFCOwnerHistory, Name, Description, HasProperties) */
+#1100= IFCPROPERTYSET ('3J1BXrlUjArxJemq$G3PJ1', $, 'staticPropertySet_Silencer', $, (#1110, #1120, #1130, #1140, #1150, #1160, #1170, #1190, #1200, #1210, #1220, #1230, #1240));
+
+#1101=IFCRELASSOCIATESLIBRARY('3SkOv5qm1FlACIR77UKNWN',$,$,$,(#1100),#510);
+
+/*  IFCProperty (Name, description) */
+/*  IFCPropertySingleValue (Name, description, NominalValue, Unit) */
+#1110=IFCPROPERTYSINGLEVALUE ('width',$,$,#33);
+
+/* ifcExternalReferenceRelationship (Name, Description, RelatingReference, RelatedResourceObjects) */
+#1111=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$, #520,(#1110));
+
+#1120=IFCPROPERTYSINGLEVALUE('length',$,$,#33);
+#1121=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$, #530,(#1120));
+
+#1130=IFCPROPERTYSINGLEVALUE('height',$,$,#33);
+#1131=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$, #540,(#1130));
+
+#1140=IFCPROPERTYSINGLEVALUE('kindOfFrame',$,$,$);
+#1141=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$, #550,(#1140));
+
+#1150=IFCPROPERTYSINGLEVALUE('kindOfPort',$,$,$);
+#1151=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#560, (#1150));
+
+#1160=IFCPROPERTYSINGLEVALUE('widthOfSplitters',$,$,#33);
+#1161=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#570, (#1160));
+
+#1170=IFCPROPERTYSINGLEVALUE('numberOfSplitters',$,$,#17);
+#1171=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#580, (#1170));
+
+#1190=IFCPROPERTYSINGLEVALUE('maxwidth',$,$,#33);
+#1191=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#590, (#1190));
+
+#1200=IFCPROPERTYSINGLEVALUE('maxLength',$,$,#33);
+#1201=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#600, (#1200));
+
+#1210=IFCPROPERTYSINGLEVALUE('maxHeight',$,IFCREAL(2000.),#33);
+#1211=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#610, (#1210));
+
+#1220=IFCPROPERTYSINGLEVALUE('minWidth',$,$,#33);
+#1221=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#620, (#1220));
+
+#1230=IFCPROPERTYSINGLEVALUE('minLength',$,$,#33);
+#1231=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#630, (#1230));
+
+#1240=IFCPROPERTYSINGLEVALUE('minHeight',$,$,#33);
+#1241=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#640, (#1240));
+
+/*  IfcPropertySet (GlobalID, IFCOwnerHistory, Name, Description, HasProperties) */
+#1300=IFCPROPERTYSET ('3abhOm$K92xfz7kMrDM8cL', $, 'dynamicPropertySet_Silencer', $, (#1310));
+#1301=IFCRELASSOCIATESLIBRARY('2zZzq5ikL48e92zw8XN3g1',$,$,$,(#1300),#700);
+
+#1310=IFCPROPERTYSINGLEVALUE('pressureLoss',$,IFCREAL(*),#24);
+#1311=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#710, (#1310));
+
+/*  IfcPropertySet (GlobalID, IFCOwnerHistory, Name, Description, HasProperties) */
+#1400= IFCPROPERTYSET ('0v_5YOfWDCDBzh57eRRaJ9', $, 'systemPropertySet_Silencer', $, (#1410));
+#1401=IFCRELASSOCIATESLIBRARY('2DuRK5B8T04hfxRARVrdLI',$,$,$,(#1400),#800);
+
+#1410=IFCPROPERTYSINGLEVALUE('volumeFlow',$,$,#44);
+#1411=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#810, (#1410));
+
+/*  IfcPropertySet (GlobalID, IFCOwnerHistory, Name, Description, HasProperties) */
+#1500= IFCPROPERTYSET ('0v_5YOfWDCDBzh57eRRaJ8', $, 'errorPropertySet', $, (#1510,#1520));
+#1501=IFCRELASSOCIATESLIBRARY('2DuRK5B8T04hfxRARVrdLJ',$,$,$,(#1500),#900);
+
+#1510=IFCPROPERTYSINGLEVALUE('Error description',$,IFCTEXT(*),$);
+#1511=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#910,(#1510));
+#1520=IFCPROPERTYSINGLEVALUE('Error code',$,IFCINTEGER(*),$);
+#1521=IFCEXTERNALREFERENCERELATIONSHIP('myExternalReferenceRelationship',$,#920,(#1520));
+
+
+
+/*
+********************************
+  Values for properties described in single column tables  
+*********************************
+*/
+
+/*
+********************************
+  Values for properties (width) 
+*********************************
+*/
+
+/*  ifcObjective ((Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, BenchmarkValues, LogicAggregator, ObjectiveQualifier, UserDefinedQualifier) */
+#2000= IFCOBJECTIVE ('setOfWidthValues', $,.USERDEFINED.,$,$,$,$, (#2001),$, .USERDEFINED., 'defines the set of values of the property width');
+
+/*  ifcMetric (Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime,  UserDefinedGrade, Benchmark, ValueSource, DataValue, ReferencePath) */
+#2001= IFCMETRIC ('widthValues',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,'width',#2002,$);
+
+#2002= IFCTABLE('Width of Silencer',(#10000,#10001,#10002,#10003,#10004,#10005, #10006, #10007, #10008, #10009),(#2003));
+/* This shows only the first 10 table rows, in the real catalog, much more would be included */
+
+#2003= IFCTABLECOLUMN('width','width','Nominal width of the silencer',#33,#2260);
+
+/*  ifcRelAssocatesConstraint (GlobalID, ifcOwnerHistory, Name, description, relatedObjects, Intent, RelatingConstraint) */
+#2004= IFCRELASSOCIATESCONSTRAINT ('16tfohlWPCke60WhxDu7yt', $,$,$, (#1000), 'Values of Properties width', #2000);
+
+/*
+********************************
+  Values for properties (length) 
+*********************************
+*/
+
+#2010= IFCOBJECTIVE ('setOflengthValues', $,.USERDEFINED.,$,$,$,$, (#2011),$, .USERDEFINED., 'defines the set of values of the property length');
+#2011= IFCMETRIC ('lengthValues',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,'length',#2012,$);
+#2012= IFCTABLE('Length of Silencer',(#15000,#15001,#15002,#15003,#15004,#15005, #15006, #15007, #15008, #15009),(#2013));
+/* This shows only the first 10 table rows, in the real catalog, much more would be included */
+
+#2013= IFCTABLECOLUMN('length','length','Nominal length of the silencer',#33,#2270);
+#2014= IFCRELASSOCIATESCONSTRAINT ('34Wmn4msX5ofBgwsk1kvYo', $,$,$, (#1000), 'Values of Properties length', #2010);
+
+/*
+********************************
+  Values for properties (height) 
+*********************************
+*/
+
+#2020= IFCOBJECTIVE ('setOfheightValues', $,.USERDEFINED.,$,$,$,$, (#2021),$, .USERDEFINED., 'defines the set of values of the property height');
+#2021= IFCMETRIC ('heightValues',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,'height',#2022,$);
+#2022= IFCTABLE('height of Silencer',(#20000,#20001,#20002,#20003,#20004,#20005, #20006, #20007, #20008, #20009),(#2023));
+/* This shows only the first 10 table rows, in the real catalog, much more would be included */
+
+#2023= IFCTABLECOLUMN('height','height','Nominal height of the silencer',#33,#2280);
+#2024= IFCRELASSOCIATESCONSTRAINT ('0lCPjBHA51deh0Vi$UvNPw', $,$,$, (#1000), 'Values of Properties height', #2020);
+
+/*
+********************************
+  Values for properties (kindOfPort) 
+*********************************
+*/
+
+#2040= IFCOBJECTIVE ('setOfkindOfPortValues', $,.USERDEFINED.,$,$,$,$, (#2041),$, .USERDEFINED., 'defines the set of values of the property kindOfPort');
+#2041= IFCMETRIC ('kindOfPortValues',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,'kindOfPort',#2042,$);
+#2042= IFCTABLE('kindOfPort of Silencer',(#25010,#25011),(#2043));
+#2043= IFCTABLECOLUMN('kindOfPort','kindOfPort','Nominal kindOfPort of the silencer',$,#2300);
+#2044= IFCRELASSOCIATESCONSTRAINT ('3SKs_Eo5r3KBSArvd$kv0T', $,$,$, (#1000), 'Values of Properties kindOfPort', #2040);
+
+/*
+********************************
+  Values for properties (widthOfSplitters) 
+*********************************
+*/
+
+#2050= IFCOBJECTIVE ('setOfwidthOfSplittersValues', $,.USERDEFINED.,$,$,$,$, (#2051),$, .USERDEFINED., 'defines the set of values of the property widthOfSplitters');
+#2051= IFCMETRIC ('widthOfSplittersValues',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,'widthOfSplitters',#2052,$);
+#2052= IFCTABLE('widthOfSplitters of Silencer',(#25020,#25021,#25022,#25023),(#2053));
+#2053= IFCTABLECOLUMN('widthOfSplitters','widthOfSplitters','Nominal widthOfSplitters of the silencer',#33,#2310);
+#2054= IFCRELASSOCIATESCONSTRAINT ('1P0KA01hf2yuotwI7Q4HjY', $,$,$, (#1000), 'Values of Properties widthOfSplitters', #2050);
+
+/*
+********************************
+  Value combinations for properties described in a multi-column table :
+
+  allowed values for properties numberOfSplitters and KindOfPort 
+*********************************
+*/
+
+#2070= IFCOBJECTIVE ('allowed combinations of numberOfSplitters and KindOfPort', $,.USERDEFINED.,$,$,$,$, (#2071),$, .USERDEFINED., 'defines the allowed value combinations for numberOfSplitters and KindOfPort');
+/*  ifcMetric (Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime,  UserDefinedGrade, Benchmark, ValueSource, DataValue, ReferencePath) */
+#2071= IFCMETRIC ('linkToCombinationTable',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2072,$);
+#2072= IFCTABLE('CombinationTable',(#25030,#25031,#25032,#25033,#25034,#25035,#25036),(#2073,#2074));
+#2073= IFCTABLECOLUMN('kindOfFrame','kindOfFrame','Nominal kindOfFrame of the silencer',$,#2290);
+#2074= IFCTABLECOLUMN('numberOfSplitters','numberOfSplitters','Nominal numberOfSplitters of the silencer',$,#2320);
+#2075= IFCRELASSOCIATESCONSTRAINT ('39pdaAHcz17fqXm2DkcYS4', $,$,$, (#1000), 'Values of Properties numberOfSplitters and kindOfFrame', #2070);
+
+
+
+#2260= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2261);
+#2261= IFCREFERENCE('IfcPropertySet','HasProperties','width',$,#2262);
+#2262= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2270= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2271);
+#2271= IFCREFERENCE('IfcPropertySet','HasProperties','length',$,#2272);
+#2272= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2280= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2281);
+#2281= IFCREFERENCE('IfcPropertySet','HasProperties','height',$,#2282);
+#2282= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2290= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2291);
+#2291= IFCREFERENCE('IfcPropertySet','HasProperties','kindOfFrame',$,#2292);
+#2292= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2300= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2301);
+#2301= IFCREFERENCE('IfcPropertySet','HasProperties','kindOfPort',$,#2302);
+#2302= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2310= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2311);
+#2311= IFCREFERENCE('IfcPropertySet','HasProperties','widthOfSplitters',$,#2312);
+#2312= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2320= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2321);
+#2321= IFCREFERENCE('IfcPropertySet','HasProperties','numberOfSplitters',$,#2322);
+#2322= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2330= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2331);
+#2331= IFCREFERENCE('IfcPropertySet','HasProperties','maxHeight',$,#2332);
+#2332= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2335= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2336);
+#2336= IFCREFERENCE('IfcPropertySet','HasProperties','maxLength',$,#2337);
+#2337= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2340= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2341);
+#2341= IFCREFERENCE('IfcPropertySet','HasProperties','maxWidth',$,#2342);
+#2342= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2350= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2351);
+#2351= IFCREFERENCE('IfcPropertySet','HasProperties','minHeight',$,#2352);
+#2352= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2355= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2356);
+#2356= IFCREFERENCE('IfcPropertySet','HasProperties','minLength',$,#2357);
+#2357= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+#2360= IFCREFERENCE('IfcBuildingElementProxyType','HasPropertySets','staticPropertySet_Silencer',$,#2361);
+#2361= IFCREFERENCE('IfcPropertySet','HasProperties','minWidth',$,#2362);
+#2362= IFCREFERENCE('IfcPropertySingleValue','NominalValue',$,$,$);
+
+
+
+/*
+*************************************
+  Rule for maxHeight, maxLength, maxWidth and minHeight, minLength, and minWidth
+  AND (maxHeight = 2000, maxLength = 2000, maxWidth = 2000, minHeight = 300, minLength = 300, minWidth = 300)
+*************************************
+*/
+
+/*  ifcObjective ((Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, BenchmarkValues, LogicAggregator, ObjectiveQualifier, UserDefinedQualifier) */
+#2400= IFCOBJECTIVE ('Rule for values maxHeight, maxLength, maxWidth and minHeight, minLength, and minWidth', $,.NOTDEFINED.,$,$,$,$,(#2410,#2411,#2412,#2413,#2414,#2415),.LOGICALAND., .USERDEFINED., ' ');
+
+
+#2401= IFCRELASSOCIATESCONSTRAINT ('3lCqagS8HCuAu6SxRPYWru', $,'test01',$, (#1000), $, #2400);
+
+/*  ifcMetric (Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, Benchmark, ValueSource, DataValue, ReferencePath) */
+#2410= IFCMETRIC ('maxHeight = 2000',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2498,#2330);
+#2411= IFCMETRIC ('maxLength = 2000',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2498,#2335);
+#2412= IFCMETRIC ('maxWidth  = 2000',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2498,#2340);
+#2413= IFCMETRIC ('minHeight =  300',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2499,#2350);
+#2414= IFCMETRIC ('minLength =  300',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2499,#2355);
+#2415= IFCMETRIC ('minWidth  =  300',$,.NOTDEFINED.,$,$,$,$,.EQUALTO.,$,#2499,#2360);
+
+#2498= IFCMEASUREWITHUNIT(IFCREAL(2000.),#33);
+#2499= IFCMEASUREWITHUNIT(IFCREAL(300.),#33);
+
+
+/*  
+********************************
+  Constraint to restrict the possible value combination 
+********************************  
+*/
+
+/* 
+ADD
+    MULTIPLY
+       numberOfSplitters
+       widthOfSplitters
+    MULTIPLY
+       ADD
+          numberOfSplitters
+          1
+       widthOfSplitters
+       0.8
+
+*/
+
+/*  ifcObjective ((Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, BenchmarkValues, LogicAggregator, ObjectiveQualifier, UserDefinedQualifier) */
+#2500= IFCOBJECTIVE ('Rule with computation', $,.NOTDEFINED.,$,$,$,$, (#2600),.LOGICALAND., .USERDEFINED., '');
+
+/*  ifcMetric (Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime,  */
+/*  UserDefinedGrade, Benchmark, ValueSource, DataValue, ReferencePath) */
+#2600= IFCMETRIC ('Comparison rule with computation',$,.NOTDEFINED.,$,$,$,$,.LESSTHAN.,$,#2700,#2260);
+
+/*
+  ifcAppliedValue (Name, Description, AppliedValue, UnitBasis, ApplicableDate, FixedUntilDate, Category, Condition, ArithmeticOperator, Components)
+*/  
+#2700=IFCAPPLIEDVALUE('myAppliedValue',$,$,$,$,$,$,$,.ADD.,(#2701,#2710));
+#2701=IFCAPPLIEDVALUE('myAppliedValue',$,$,$,$,$,$,$,.MULTIPLY.,(#2702,#2703));
+#2702=IFCAPPLIEDVALUE('myAppliedValue',$,#2320,$,$,$,$,$,$,$);
+#2703=IFCAPPLIEDVALUE('myAppliedValue',$,#2310,$,$,$,$,$,$,$);
+#2710=IFCAPPLIEDVALUE('myAppliedValue',$,$,$,$,$,$,$,.MULTIPLY.,(#2711,#2720,#2721));
+#2711=IFCAPPLIEDVALUE('myAppliedValue',$,$,$,$,$,$,$,.ADD.,(#2712,#2713));
+#2712=IFCAPPLIEDVALUE('myAppliedValue',$,#2320,$,$,$,$,$,$,$);
+#2713=IFCAPPLIEDVALUE('myAppliedValue',$,#2714,$,$,$,$,$,$,$);
+#2714=IFCMEASUREWITHUNIT(IFCREAL(1.),#17);
+#2720=IFCAPPLIEDVALUE('myAppliedValue',$,#2310,$,$,$,$,$,$,$);
+#2721=IFCAPPLIEDVALUE('myAppliedValue',$,#2722,$,$,$,$,$,$,$);
+#2722=IFCMEASUREWITHUNIT(IFCREAL(0.8),#17);
+
+/*  ifcRelAssiocatesConstraint (GlobalID, ifcOwnerHistory, Name, description, relatedObjects, Intent, RelatingConstraint)
+*/
+
+#3000= IFCRELASSOCIATESCONSTRAINT ('283f6kSUvEdQSNY$hTQLIn', $,$,$, (#1000), $, #2500);
+
+
+/*
+***********************************
+rule saying that all max values are bigger or equal than the respective values and             
+                 all min values are smaller or equal than the respective values
+***********************************
+*/
+
+/*  ifcObjective ((Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, BenchmarkValues, LogicAggregator, ObjectiveQualifier, UserDefinedQualifier) */
+#3100= IFCOBJECTIVE ('Rule to relate max and min values to the values of the respective properties', $,.NOTDEFINED.,$,$,$,$,(#3150,#3151,#3152,#3153,#3154,#3155),.LOGICALAND., .USERDEFINED., ' ');
+
+#3101= IFCRELASSOCIATESCONSTRAINT ('3lCqagS8HCuAu6SxPRYWru', $,' ',$, (#1000), $, #3100);
+
+/*  ifcMetric (Name, Description, ConstraintGrade, ConstraintSource, CreatingActor, CreationTime, UserDefinedGrade, Benchmark, ValueSource, DataValue, ReferencePath) */
+#3150= IFCMETRIC ('height <= maxHeight',$,.NOTDEFINED.,$,$,$,$,.LESSTHANOREQUALTO.,$,#3180,#2330);
+#3151= IFCMETRIC ('length <= maxLength',$,.NOTDEFINED.,$,$,$,$,.LESSTHANOREQUALTO.,$,#3181,#2335);
+#3152= IFCMETRIC ('width <= maxWidth',$,.NOTDEFINED.,$,$,$,$,.LESSTHANOREQUALTO.,$,#3182,#2340);
+#3153= IFCMETRIC ('height >= minHeight',$,.NOTDEFINED.,$,$,$,$,.GREATERTHANOREQUALTO.,$,#3180,#2350);
+#3154= IFCMETRIC ('length >= minLength',$,.NOTDEFINED.,$,$,$,$,.GREATERTHANOREQUALTO.,$,#3181,#2355);
+#3155= IFCMETRIC ('width >= minWidth',$,.NOTDEFINED.,$,$,$,$,.GREATERTHANOREQUALTO.,$,#3182,#2360);
+
+#3180=IFCAPPLIEDVALUE('ref to height',$,#2280,$,$,$,$,$,$,$);
+#3181=IFCAPPLIEDVALUE('ref to length',$,#2270,$,$,$,$,$,$,$);
+#3182=IFCAPPLIEDVALUE('ref to width',$,#2260,$,$,$,$,$,$,$);
+
+/*
+************************************
+dynamic property with Java function
+************************************
+*/
+
+/*
+complex property for parameters
+*/
+
+/* ifcComplexProperty (Name, Description, UsageName, (HasProperties) ) */
+#4000= IFCCOMPLEXPROPERTY ('parametersPressureLoss', $, 'input', (#1410, #1160, #1110, #1130, #1120, #1170));
+/* Elements in HasProperties: volumeFlow, widthOfSplitters, width, height, length, numberOfSplitters */
+
+#4001= IFCCOMPLEXPROPERTY ('resultPressureLoss', $, 'output', (#4002,#1310));
+/* Elements in HasProperties: pressureLoss, error */
+
+#4002= IFCCOMPLEXPROPERTY ('error', $, 'output', (#1510,#1520));
+/* Elements in HasProperties: errorMessage, errorCode */
+
+/*
+JavaScript function in ifcPropertyDependencyRelationship
+
+ifcPropertyDependencyRelationship (Name, Description, DependingProperty, DependantProperty, Expression)
+*/
+
+#4100= IFCPROPERTYDEPENDENCYRELATIONSHIP ('pressureLoss',$,#4000,#4001,'\X\0D\X\0A// JavaScript source code\X\0D\X\0Afunction ConvertInCustomUnit(val, unit) {\X\0D\X\0A \X\0D\X\0A    val = val * (unit.coefficientNumerator / unit.coefficientDenominator);\X\0D\X\0A    val = val + (unit.offsetNumerator / unit.offsetDenominator);\X\0D\X\0A\X\0D\X\0A    return val;\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Afunction ConvertInSIUnit(val, unit) {\X\0D\X\0A\X\0D\X\0A    val = val - (unit.offsetNumerator / unit.offsetDenominator);\X\0D\X\0A    val = val / (unit.coefficientNumerator / unit.coefficientDenominator);\X\0D\X\0A\X\0D\X\0A    return val;\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Afunction strip(number) {\X\0D\X\0A    return (parseFloat(number).toFixed(3));\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Afunction PressureLoss(volumeFlow, widthOfSplitters, width, height, length, numberOfSplitters){\X\0D\X\0A\X\0D\X\0A	var aRelation = 0.;\X\0D\X\0A	var aTotal = 0.;\X\0D\X\0A	var aEffective = 0.;\X\0D\X\0A	var widthEffective = 0.;\X\0D\X\0A	var rhoAir = 1.2041;\X\0D\X\0A	aTotal = width * height ;\X\0D\X\0A	widthEffective = width - widthOfSplitters * numberOfSplitters;\X\0D\X\0A	aEffective = widthEffective * height;\X\0D\X\0A	aRelation = aEffective / aTotal;\X\0D\X\0A	var w = 0.;\X\0D\X\0A    var atm = aTotal / 1000000.;\X\0D\X\0A	w = volumeFlow / 3600. / atm;\X\0D\X\0A	var zeta1 = 0.;\X\0D\X\0A	\X\0D\X\0A// simplified computation of zeta1 and zeta2, just for the sake of the example\X\0D\X\0A	if (aRelation > 0.9) \X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.7) \X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.1;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.5) \X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.2;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.3) \X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.3;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.1) \X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.4;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.0)\X\0D\X\0A	{\X\0D\X\0A		zeta1 = 0.5;\X\0D\X\0A	};\X\0D\X\0A\X\0D\X\0A	var zeta2 = 0.;\X\0D\X\0A	if (aRelation > 0.9) \X\0D\X\0A	{\X\0D\X\0A		zeta2 = 0.;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.7) \X\0D\X\0A	{\X\0D\X\0A		zeta2 = 0.1;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.5) \X\0D\X\0A	{\X\0D\X\0A		zeta2 = 0.2;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.3) \X\0D\X\0A	{\X\0D\X\0A		zeta2 = 0.4;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.1) \X\0D\X\0A	{\X\0D\X\0A		zeta2 = 0.7;\X\0D\X\0A	}\X\0D\X\0A	else if (aRelation > 0.0)\X\0D\X\0A	{\X\0D\X\0A		zeta2 = 1.0;\X\0D\X\0A	};\X\0D\X\0A	var pressLoss = ( zeta1 + zeta2 ) * rhoAir / 2. * w * w;\X\0D\X\0A	return pressLoss;	\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Atry {\X\0D\X\0A    var inputObj = JSON.parse(input);\X\0D\X\0A    var outputObj = JSON.parse(output);\X\0D\X\0A\X\0D\X\0A    var errors = outputObj.complexProperties[0];\X\0D\X\0A    var result = outputObj.simpleProperties[0];\X\0D\X\0A\X\0D\X\0A    var volumeFlow = parseFloat(inputObj.simpleProperties[0].arg);\X\0D\X\0A    var widthOfSplitters = parseFloat(inputObj.simpleProperties[1].arg);\X\0D\X\0A    var width = parseFloat(inputObj.simpleProperties[2].arg);\X\0D\X\0A    var height = parseFloat(inputObj.simpleProperties[3].arg);\X\0D\X\0A    var length = parseFloat(inputObj.simpleProperties[4].arg);\X\0D\X\0A    var numberOfSplitters = parseFloat(inputObj.simpleProperties[5].arg);\X\0D\X\0A\X\0D\X\0A    if (typeof volumeFlow !== 'number' || typeof widthOfSplitters !== 'number' || typeof width !== 'number' || typeof height !== 'number' || typeof length !== 'number' || typeof numberOfSplitters !== 'number') {\X\0D\X\0A        throw TypeError;\X\0D\X\0A    }\X\0D\X\0A\X\0D\X\0A    var unit_volumeFlow = inputObj.simpleProperties[0].unit;\X\0D\X\0A    var unit_widthOfSplitters = inputObj.simpleProperties[1].unit;\X\0D\X\0A    var unit_width = inputObj.simpleProperties[2].unit;\X\0D\X\0A    var unit_height = inputObj.simpleProperties[3].unit;\X\0D\X\0A    var unit_length = inputObj.simpleProperties[4].unit;\X\0D\X\0A\X\0D\X\0A    volumeFlow = ConvertInSIUnit(volumeFlow, unit_volumeFlow);\X\0D\X\0A    widthOfSplitters = ConvertInSIUnit(widthOfSplitters, unit_widthOfSplitters);\X\0D\X\0A    width = ConvertInSIUnit(width, unit_width);\X\0D\X\0A    height = ConvertInSIUnit(height, unit_height);\X\0D\X\0A    length = ConvertInSIUnit(length, unit_length);\X\0D\X\0A	\X\0D\X\0A	var computedPressureLoss = pressureLoss (volumeFlow, widthOfSplitters, width, height, length, numberOfSplitters);\X\0D\X\0A\X\0D\X\0A    var custom_unit_computedPressureLoss = outputObj.simpleProperties[0].unit;\X\0D\X\0A\X\0D\X\0A    computedPressureLoss = ConvertInCustomUnit(computedPressureLoss, custom_unit_computedPressureLoss);\X\0D\X\0A\X\0D\X\0A    outputObj.simpleProperties[0].arg = strip(computedPressureLoss);\X\0D\X\0A \X\0D\X\0A    errors.simpleProperties[0].arg = "Success";\X\0D\X\0A    errors.simpleProperties[1].arg = 0;\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Acatch (err) {\X\0D\X\0A    errors.simpleProperties[0].arg = err.message;\X\0D\X\0A    errors.simpleProperties[1].arg = err.name;\X\0D\X\0A}\X\0D\X\0A\X\0D\X\0Afinally {\X\0D\X\0A    output = JSON.stringify(outputObj, null, 2);\X\0D\X\0A}
+\X\0D\X\0A\X\0D\X\0A');
+
+
+/* table rows for width */
+
+#10000= IFCTABLEROW((IFCREAL(300.)),$);
+#10001= IFCTABLEROW((IFCREAL(300.5)),$);
+#10002= IFCTABLEROW((IFCREAL(301.)),$);
+#10003= IFCTABLEROW((IFCREAL(301.5)),$);
+#10004= IFCTABLEROW((IFCREAL(302.)),$);
+#10005= IFCTABLEROW((IFCREAL(302.5)),$);
+#10006= IFCTABLEROW((IFCREAL(303.)),$);
+#10007= IFCTABLEROW((IFCREAL(303.5)),$);
+#10008= IFCTABLEROW((IFCREAL(304.)),$);
+#10009= IFCTABLEROW((IFCREAL(304.5)),$);
+/*  ... */
+
+
+
+/* table rows for length */
+
+#15000= IFCTABLEROW((IFCREAL(300.)),$);
+#15001= IFCTABLEROW((IFCREAL(300.5)),$);
+#15002= IFCTABLEROW((IFCREAL(301.)),$);
+#15003= IFCTABLEROW((IFCREAL(301.5)),$);
+#15004= IFCTABLEROW((IFCREAL(302.)),$);
+#15005= IFCTABLEROW((IFCREAL(302.5)),$);
+#15006= IFCTABLEROW((IFCREAL(303.)),$);
+#15007= IFCTABLEROW((IFCREAL(303.5)),$);
+#15008= IFCTABLEROW((IFCREAL(304.)),$);
+#15009= IFCTABLEROW((IFCREAL(304.5)),$);
+/*  ... */
+
+
+/* table rows for height */
+
+#20000= IFCTABLEROW((IFCREAL(300.)),$);
+#20001= IFCTABLEROW((IFCREAL(301.)),$);
+#20002= IFCTABLEROW((IFCREAL(302.)),$);
+#20003= IFCTABLEROW((IFCREAL(303.)),$);
+#20004= IFCTABLEROW((IFCREAL(304.)),$);
+#20005= IFCTABLEROW((IFCREAL(305.)),$);
+#20006= IFCTABLEROW((IFCREAL(306.)),$);
+#20007= IFCTABLEROW((IFCREAL(307.)),$);
+#20008= IFCTABLEROW((IFCREAL(308.)),$);
+#20009= IFCTABLEROW((IFCREAL(309.)),$);
+/*  ... */
+
+
+
+/* table rows for kindOfPort */
+
+#25010= IFCTABLEROW((IFCTEXT('flange')),$);
+#25011= IFCTABLEROW((IFCTEXT('frame')),$);
+
+
+/* table rows for widthOfSplitters */
+
+#25020= IFCTABLEROW((IFCREAL(60.)),$);
+#25021= IFCTABLEROW((IFCREAL(80.)),$);
+#25022= IFCTABLEROW((IFCREAL(100.)),$);
+#25023= IFCTABLEROW((IFCREAL(120.)),$);
+
+
+/* table rows for kindOfFrame and numberOfSplitters */
+
+#25030= IFCTABLEROW((IFCTEXT('SB25'),IFCREAL(1.)),$);
+#25031= IFCTABLEROW((IFCTEXT('SB25'),IFCREAL(2.)),$);
+#25032= IFCTABLEROW((IFCTEXT('SB25'),IFCREAL(3.)),$);
+#25033= IFCTABLEROW((IFCTEXT('SB35'),IFCREAL(2.)),$);
+#25034= IFCTABLEROW((IFCTEXT('SB35'),IFCREAL(3.)),$);
+#25035= IFCTABLEROW((IFCTEXT('SB35'),IFCREAL(4.)),$);
+#25036= IFCTABLEROW((IFCTEXT('SB35'),IFCREAL(5.)),$);
+
+/* JavaScript script as comment
+// JavaScript source code
+function ConvertInCustomUnit(val, unit) {
+ 
+    val = val * (unit.coefficientNumerator / unit.coefficientDenominator);
+    val = val + (unit.offsetNumerator / unit.offsetDenominator);
+
+    return val;
+}
+
+function ConvertInSIUnit(val, unit) {
+
+    val = val - (unit.offsetNumerator / unit.offsetDenominator);
+    val = val / (unit.coefficientNumerator / unit.coefficientDenominator);
+
+    return val;
+}
+
+function strip(number) {
+    return (parseFloat(number).toFixed(3));
+}
+
+function PressureLoss(volumeFlow, widthOfSplitters, width, height, length, numberOfSplitters){
+
+	var aRelation = 0.;
+	var aTotal = 0.;
+	var aEffective = 0.;
+	var widthEffective = 0.;
+	var rhoAir = 1.2041;
+	aTotal = width * height ;
+	widthEffective = width - widthOfSplitters * numberOfSplitters;
+	aEffective = widthEffective * height;
+	aRelation = aEffective / aTotal;
+	var w = 0.;
+    var atm = aTotal / 1000000.;
+	w = volumeFlow / 3600. / atm;
+	var zeta1 = 0.;
+	
+// simplified computation of zeta1 and zeta2, just for the sake of the example
+	if (aRelation > 0.9) 
+	{
+		zeta1 = 0.;
+	}
+	else if (aRelation > 0.7) 
+	{
+		zeta1 = 0.1;
+	}
+	else if (aRelation > 0.5) 
+	{
+		zeta1 = 0.2;
+	}
+	else if (aRelation > 0.3) 
+	{
+		zeta1 = 0.3;
+	}
+	else if (aRelation > 0.1) 
+	{
+		zeta1 = 0.4;
+	}
+	else if (aRelation > 0.0)
+	{
+		zeta1 = 0.5;
+	};
+
+	var zeta2 = 0.;
+	if (aRelation > 0.9) 
+	{
+		zeta2 = 0.;
+	}
+	else if (aRelation > 0.7) 
+	{
+		zeta2 = 0.1;
+	}
+	else if (aRelation > 0.5) 
+	{
+		zeta2 = 0.2;
+	}
+	else if (aRelation > 0.3) 
+	{
+		zeta2 = 0.4;
+	}
+	else if (aRelation > 0.1) 
+	{
+		zeta2 = 0.7;
+	}
+	else if (aRelation > 0.0)
+	{
+		zeta2 = 1.0;
+	};
+	var pressLoss = ( zeta1 + zeta2 ) * rhoAir / 2. * w * w;
+	return pressLoss;	
+}
+
+try {
+    var inputObj = JSON.parse(input);
+    var outputObj = JSON.parse(output);
+
+    var errors = outputObj.complexProperties[0];
+    var result = outputObj.simpleProperties[0];
+
+    var volumeFlow = parseFloat(inputObj.simpleProperties[0].arg);
+    var widthOfSplitters = parseFloat(inputObj.simpleProperties[1].arg);
+    var width = parseFloat(inputObj.simpleProperties[2].arg);
+    var height = parseFloat(inputObj.simpleProperties[3].arg);
+    var length = parseFloat(inputObj.simpleProperties[4].arg);
+    var numberOfSplitters = parseFloat(inputObj.simpleProperties[5].arg);
+
+    if (typeof volumeFlow !== 'number' || typeof widthOfSplitters !== 'number' || typeof width !== 'number' || typeof height !== 'number' || typeof length !== 'number' || typeof numberOfSplitters !== 'number') {
+        throw TypeError;
+    }
+
+    var unit_volumeFlow = inputObj.simpleProperties[0].unit;
+    var unit_widthOfSplitters = inputObj.simpleProperties[1].unit;
+    var unit_width = inputObj.simpleProperties[2].unit;
+    var unit_height = inputObj.simpleProperties[3].unit;
+    var unit_length = inputObj.simpleProperties[4].unit;
+
+    volumeFlow = ConvertInSIUnit(volumeFlow, unit_volumeFlow);
+    widthOfSplitters = ConvertInSIUnit(widthOfSplitters, unit_widthOfSplitters);
+    width = ConvertInSIUnit(width, unit_width);
+    height = ConvertInSIUnit(height, unit_height);
+    length = ConvertInSIUnit(length, unit_length);
+	
+	var computedPressureLoss = pressureLoss (volumeFlow, widthOfSplitters, width, height, length, numberOfSplitters);
+
+    var custom_unit_computedPressureLoss = outputObj.simpleProperties[0].unit;
+
+    computedPressureLoss = ConvertInCustomUnit(computedPressureLoss, custom_unit_computedPressureLoss);
+
+    outputObj.simpleProperties[0].arg = strip(computedPressureLoss);
+ 
+    errors.simpleProperties[0].arg = "Success";
+    errors.simpleProperties[1].arg = 0;
+}
+
+catch (err) {
+    errors.simpleProperties[0].arg = err.message;
+    errors.simpleProperties[1].arg = err.name;
+}
+
+finally {
+    output = JSON.stringify(outputObj, null, 2);
+}
+
+
+*/
+
+/*
+input JSON file (generic)
+{
+	 "name": "input",
+	 "simpleProperties": [
+		{
+			 "guid": "7b1781cd-d7ad-459e-b55d-e17714cf596d",
+			 "unit": {
+				 "coefficientNumerator": 1.0,
+				 "coefficientDenominator": 1.0,
+				 "lengthExponentNumerator": -2,
+				 "lengthExponentDenominator": 1,
+				 "massExponentNumerator": 1,
+				 "massExponentDenominator": 1,
+				 "timeExponentNumerator": -2,
+				 "timeExponentDenominator": 1,
+				 "electricCurrentExponentNumerator": 0,
+				 "electricCurrentExponentDenominator": 1,
+				 "thermodynamicTemperatureExponentNumerator": 0,
+				 "thermodynamicTemperatureExponentDenominator": 1,
+				 "amountOfSubstanceExponentNumerator": 0,
+				 "amountOfSubstanceExponentDenominator": 1,
+				 "luminousIntensityExponentNumerator": 0,
+				 "luminousIntensityExponentDenominator": 1,
+				 "offsetNumerator": 0.0,
+				 "offsetDenominator": 1.0
+			}
+		},
+		{
+			 "guid": "f188534c-01f2-4bd3-b560-bb604ee8d644",
+			 "unit": {
+				 "coefficientNumerator": 1.0,
+				 "coefficientDenominator": 1000.0,
+				 "lengthExponentNumerator": 1,
+				 "lengthExponentDenominator": 1,
+				 "massExponentNumerator": 0,
+				 "massExponentDenominator": 1,
+				 "timeExponentNumerator": 0,
+				 "timeExponentDenominator": 1,
+				 "electricCurrentExponentNumerator": 0,
+				 "electricCurrentExponentDenominator": 1,
+				 "thermodynamicTemperatureExponentNumerator": 0,
+				 "thermodynamicTemperatureExponentDenominator": 1,
+				 "amountOfSubstanceExponentNumerator": 0,
+				 "amountOfSubstanceExponentDenominator": 1,
+				 "luminousIntensityExponentNumerator": 0,
+				 "luminousIntensityExponentDenominator": 1,
+				 "offsetNumerator": 0.0,
+				 "offsetDenominator": 1.0
+			}
+		},
+		{
+			 "guid": "4316426c-4096-4a9f-af6d-00cd0ef47cbe",
+			 "unit": {
+				 "coefficientNumerator": 1.0,
+				 "coefficientDenominator": 1000.0,
+				 "lengthExponentNumerator": 1,
+				 "lengthExponentDenominator": 1,
+				 "massExponentNumerator": 0,
+				 "massExponentDenominator": 1,
+				 "timeExponentNumerator": 0,
+				 "timeExponentDenominator": 1,
+				 "electricCurrentExponentNumerator": 0,
+				 "electricCurrentExponentDenominator": 1,
+				 "thermodynamicTemperatureExponentNumerator": 0,
+				 "thermodynamicTemperatureExponentDenominator": 1,
+				 "amountOfSubstanceExponentNumerator": 0,
+				 "amountOfSubstanceExponentDenominator": 1,
+				 "luminousIntensityExponentNumerator": 0,
+				 "luminousIntensityExponentDenominator": 1,
+				 "offsetNumerator": 0.0,
+				 "offsetDenominator": 1.0
+			}
+		},
+		{
+			 "guid": "6edb4b53-ef7c-40eb-b09a-a230eb7f0124",
+			 "unit": {
+				 "coefficientNumerator": 1.0,
+				 "coefficientDenominator": 1000.0,
+				 "lengthExponentNumerator": 1,
+				 "lengthExponentDenominator": 1,
+				 "massExponentNumerator": 0,
+				 "massExponentDenominator": 1,
+				 "timeExponentNumerator": 0,
+				 "timeExponentDenominator": 1,
+				 "electricCurrentExponentNumerator": 0,
+				 "electricCurrentExponentDenominator": 1,
+				 "thermodynamicTemperatureExponentNumerator": 0,
+				 "thermodynamicTemperatureExponentDenominator": 1,
+				 "amountOfSubstanceExponentNumerator": 0,
+				 "amountOfSubstanceExponentDenominator": 1,
+				 "luminousIntensityExponentNumerator": 0,
+				 "luminousIntensityExponentDenominator": 1,
+				 "offsetNumerator": 0.0,
+				 "offsetDenominator": 1.0
+			}
+		},
+		{
+			 "guid": "4f5da808-5eac-4f49-b57c-a87a444e429f",
+			 "unit": {
+				 "coefficientNumerator": 1.0,
+				 "coefficientDenominator": 1000.0,
+				 "lengthExponentNumerator": 1,
+				 "lengthExponentDenominator": 1,
+				 "massExponentNumerator": 0,
+				 "massExponentDenominator": 1,
+				 "timeExponentNumerator": 0,
+				 "timeExponentDenominator": 1,
+				 "electricCurrentExponentNumerator": 0,
+				 "electricCurrentExponentDenominator": 1,
+				 "thermodynamicTemperatureExponentNumerator": 0,
+				 "thermodynamicTemperatureExponentDenominator": 1,
+				 "amountOfSubstanceExponentNumerator": 0,
+				 "amountOfSubstanceExponentDenominator": 1,
+				 "luminousIntensityExponentNumerator": 0,
+				 "luminousIntensityExponentDenominator": 1,
+				 "offsetNumerator": 0.0,
+				 "offsetDenominator": 1.0
+			}
+		},
+		{
+			 "guid": "1afce859-a37f-4b75-95b1-38d6a6857cc9",
+			 "unit": {
+				"coefficientNumerator": 1.0,
+				"coefficientDenominator": 1.0,
+				"lengthExponentNumerator": 0,
+				"lengthExponentDenominator": 0,
+				"massExponentNumerator": 0,
+				"massExponentDenominator": 0,
+				"timeExponentNumerator": 0,
+				"timeExponentDenominator": 0,
+				"electricCurrentExponentNumerator": 0,
+				"electricCurrentExponentDenominator": 0,
+				"thermodynamicTemperatureExponentNumerator": 0,
+				"thermodynamicTemperatureExponentDenominator": 0,
+				"amountOfSubstanceExponentNumerator": 0,
+				"amountOfSubstanceExponentDenominator": 0,
+				"luminousIntensityExponentNumerator": 0,
+				"luminousIntensityExponentDenominator": 0,
+				"offsetNumerator": 0.0,
+				"offsetDenominator": 1.0
+		  	}
+		}		
+	]
+}
+*/
+
+/*
+output JSON file (generic)
+{
+  "name": "output",
+  "complexProperties": [
+    {
+      "name": "status",
+      "simpleProperties": [
+        {
+          "guid": "7b1781cd-d7ad-459e-b55d-e17714cf596y"
+        },
+        {
+          "guid": "02d81e53-0729-4e5f-a643-aad66e1369f5",
+          "unit": {
+            "coefficientNumerator": 1.0,
+            "coefficientDenominator": 1.0,
+            "lengthExponentNumerator": 0,
+            "lengthExponentDenominator": 0,
+            "massExponentNumerator": 0,
+            "massExponentDenominator": 0,
+            "timeExponentNumerator": 0,
+            "timeExponentDenominator": 0,
+            "electricCurrentExponentNumerator": 0,
+            "electricCurrentExponentDenominator": 0,
+            "thermodynamicTemperatureExponentNumerator": 0,
+            "thermodynamicTemperatureExponentDenominator": 0,
+            "amountOfSubstanceExponentNumerator": 0,
+            "amountOfSubstanceExponentDenominator": 0,
+            "luminousIntensityExponentNumerator": 0,
+            "luminousIntensityExponentDenominator": 0,
+            "offsetNumerator": 0.0,
+            "offsetDenominator": 1.0
+          }
+        }
+      ]
+    }
+  ],
+  "simpleProperties": [
+  	{
+  	  "guid" : "7b1781cd-d7ad-459e-b55d-e17714cf596y"
+  	},
+  	{ "guid": "02d81e53-0729-4e5f-a643-aad66e1369f5",
+  	  "unit": {
+	    "coefficientNumerator": 1.0,
+	    "coefficientDenominator": 1.0,
+	    "lengthExponentNumerator": 0,
+	    "lengthExponentDenominator": 0,
+	    "massExponentNumerator": 0,
+	    "massExponentDenominator": 0,
+	    "timeExponentNumerator": 0,
+	    "timeExponentDenominator": 0,
+	    "electricCurrentExponentNumerator": 0,
+	    "electricCurrentExponentDenominator": 0,
+	    "thermodynamicTemperatureExponentNumerator": 0,
+	    "thermodynamicTemperatureExponentDenominator": 0,
+	    "amountOfSubstanceExponentNumerator": 0,
+	    "amountOfSubstanceExponentDenominator": 0,
+	    "luminousIntensityExponentNumerator": 0,
+	    "luminousIntensityExponentDenominator": 0,
+	    "offsetNumerator": 0.0,
+	    "offsetDenominator": 1.0
+	  }
+  	}
+  ]
+}
+
+*/
+
+
+ENDSEC;
+END-ISO-10303-21;
+
+
+	  
+	  
