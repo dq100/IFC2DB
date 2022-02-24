@@ -1,1 +1,3 @@
 config/db.config - Kopie.js
+node_modules/*
+package-lock.json
